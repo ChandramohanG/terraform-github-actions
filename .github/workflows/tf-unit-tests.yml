@@ -10,7 +10,6 @@ on:
             general context (blueprint, run id, etc...)
           type: string
 jobs:
-jobs:
   create-entity-in-port-and-update-run:
     runs-on: ubuntu-latest
     steps:
