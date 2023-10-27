@@ -6,7 +6,7 @@ This is a sample repository that shows how to use GitHub Actions workflows to ma
 
 <img width="2159" alt="GitHub Actions CICD for Terraform" src="https://user-images.githubusercontent.com/1248896/189254453-439dd558-fc6c-4377-b01c-d5e54cc49403.png">
 
-## Dataflow
+## Dataflows
 
 1. Create a new branch and check in the needed Terraform code modifications.
 2. Create a Pull Request (PR) in GitHub once you're ready to merge your changes into your environment.
