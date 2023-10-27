@@ -10,6 +10,45 @@ on:
             general context (blueprint, run id, etc...)
           type: string
 jobs:
+jobs:
+  create-entity-in-port-and-update-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: UPSERT Entity
+        uses: port-labs/port-github-action@v1
+        with:
+          identifier: some_identifier
+          title: Some Title
+          team: "[]"
+          icon: DefaultBlueprint
+          blueprint: service
+          properties: |-
+            {
+              "name": "string",
+              "url": "https://example.com",
+              "readme": "string",
+              "about": "string"
+            }
+          relations: |-
+            {
+              "package": [
+                "related_entity_identifier",
+                "another_related_entity_identifier"
+              ]
+            }
+          clientId: ${{ secrets.PORT_CLIENT_ID }}
+          clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
+          operation: UPSERT
+          runId: ${{fromJson(inputs.port_payload).context.runId}}
+      - name: Create a log message
+        uses: port-labs/port-github-action@v1
+        with:
+          clientId: ${{ secrets.PORT_CLIENT_ID }}
+          clientSecret: ${{ secrets.PORT_CLIENT_SECRET }}
+          operation: PATCH_RUN
+          runId: ${{fromJson(inputs.port_payload).context.runId}}
+          logMessage: An example of a log message
+          
   terraform-unit-tests:
     name: 'Terraform Unit Tests'
     runs-on: ubuntu-latest
